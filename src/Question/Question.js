@@ -5,13 +5,17 @@ export default class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      particularQuestion:{}
+      particularQuestion: {}
     }
   }
 
   render() {
     return(
-      <p>Question here</p>
+      <div className="overlay">
+        <article className="question-box">
+          <p>Question here</p>
+        </article>
+      </div>    
     )
   }
 }

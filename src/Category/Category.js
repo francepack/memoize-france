@@ -6,10 +6,10 @@ export default class Category extends Component {
     super(props);
     this.state = {
       categoryQuestions: props.questions.filter(question => {
-        if (question.category === this.props.category) {
-          return question
-      }})
+       return question.category === this.props.category
+      })
     }
+    
   }
 
   render() {
