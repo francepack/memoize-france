@@ -1,2 +1,32 @@
+//Color scheme
 $backdrop: hsla(278, 18%, 64%, 1);
 $purpwhite: hsla(278, 3%, 92%, 1);
+
+//Used for various buttons
+@mixin buttons {
+  border: 0;
+  border-radius: 5px;
+  color: hsla(360, 100%, 100%, 1);
+  font-weight: 800;
+  height: 30px;
+  outline: none;
+  &:focus {
+    background-color: hsla(243, 89%, 39%, 1);
+  }
+  &:hover {
+    background-color: hsla(243, 89%, 39%, 1);
+    cursor: pointer;
+  }
+}
+
+// Used for boxes present on screen
+@mixin box {
+
+}
+
+//Used for various popup boxes
+@mixin popup {
+  border: 1px solid black;
+  border-radius: 10px;
+
+}

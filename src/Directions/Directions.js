@@ -9,9 +9,7 @@ function Directions(props) {
         <button className="directions-content close-btn" onClick={props.toggleDirections}>close</button>
       </article>
       }
-
     </div>
-
   )
 }
 
