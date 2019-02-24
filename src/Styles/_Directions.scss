@@ -1,0 +1,18 @@
+.directions-box {
+  border: solid 2px black;
+  border-radius: 10px;
+  background-color: grey;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  justify-content: space-between;
+  left: 25%;
+  position: absolute;
+  top: 25%;
+  width: 50%;
+  z-index: 2;
+}
+
+.directions-content {
+  margin: 2em;
+}

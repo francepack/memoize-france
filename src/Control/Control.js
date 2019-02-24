@@ -14,7 +14,11 @@ export default class Control extends Component {
     this.setState({
       selectedQuestion: this.props.questionPool.shift()
     })
-    // console.log(this.state.selectedQuestion)
+    this.produceQuestion()
+  }
+
+  produceQuestion = () => {
+    console.log(this.state.selectedQuestion)
   }
 
   render() {

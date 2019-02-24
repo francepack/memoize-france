@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import '../Styles/index.scss';
-import Category from '../Category/Category.js'
-import Storage from '../Storage/Storage.js'
-import mockdata from './mockdata.js'
+import Category from '../Category/Category';
+import Storage from '../Storage/Storage';
+import mockdata from './mockdata';
+import Header from '../Header/Header';
 
 export default class App extends Component {
   constructor() {
@@ -37,10 +38,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="header">
-          <h1 className="title">memoize</h1>
-          <p className="subtitle">Find a subject to study and test your knowledge</p>
-        </header>
+        <Header />
         <section className="categories-section">
           {this.state.categories.map((category, i) => (
             <Category key={i}
