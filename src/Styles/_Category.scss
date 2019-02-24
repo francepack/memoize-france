@@ -1,6 +1,5 @@
 .category-box {
-  border: solid black 1px;
-  // margin: auto;
+  @include box;
   width: 26.6%;
   min-width: 250px;
 }

@@ -27,6 +27,8 @@ export default class App extends Component {
     })
   }
 
+  collectMissedQuestions() {}
+
   componentDidMount() {
     {this.findAllCategories()}
   //   fetch('url')

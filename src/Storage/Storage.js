@@ -10,7 +10,7 @@ export default class Storage extends Component {
 
   render() {
     return(
-      <section>
+      <section className="storage">
         <p>Revisit questions you've missed!</p>
         <button>Give them to me, boss</button>
       </section>

@@ -21,7 +21,8 @@ $purpwhite: hsla(278, 3%, 92%, 1);
 
 //Used for boxes present on screen
 @mixin box {
-
+  border: solid white 2px;
+  border-radius: 10px;
 }
 
 //Used for various popup boxes
