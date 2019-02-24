@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Question from '../Question/Question.js';
+import Question from '../Question/Question';
 
 export default class Control extends Component {
   constructor(props) {
@@ -9,13 +9,13 @@ export default class Control extends Component {
     }
   }
 
-  fireQuestion = () => {
-    console.log(this.props)
-    this.setState({
-      selectedQuestion: this.props.questionPool.shift()
-    })
-    this.produceQuestion()
-  }
+  // fireQuestion = () => {
+  //   console.log(this.props)
+  //   this.setState({
+  //     selectedQuestion: this.props.questionPool.shift()
+  //   })
+  //   this.produceQuestion()
+  // }
 
   produceQuestion = () => {
     console.log(this.state.selectedQuestion)
@@ -24,7 +24,7 @@ export default class Control extends Component {
   render() {
     console.log(this.state.selectedQuestion)
     return(
-      <button onClick={this.fireQuestion}>Fire Question</button>
+      <button onClick={this.props.fireQuestion}>Fire Question</button>
     )
   }
 }

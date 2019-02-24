@@ -10,7 +10,8 @@ export default class App extends Component {
     super();
     this.state = {
       questions: mockdata.codeQuestions,
-      categories: []
+      categories: [],
+      missedQuestions: []
     }
   }
 
@@ -45,11 +46,12 @@ export default class App extends Component {
                       category={category}
                       questions={this.state.questions}
             />
-            ))
-          }
+          ))}
         </section>
         <section className="storage-box"> 
-          <Storage />
+          <Storage 
+            missedQuestions={this.state.missedQuestions}
+          />
         </section>  
       </div>
     );

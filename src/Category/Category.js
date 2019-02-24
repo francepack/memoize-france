@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Control from '../Control/Control.js'
+import Control from '../Control/Control'
 
 export default class Category extends Component {
   constructor(props) {
@@ -7,9 +7,17 @@ export default class Category extends Component {
     this.state = {
       categoryQuestions: props.questions.filter(question => {
        return question.category === this.props.category
-      })
+      }),
+      answeredQuestions: []
     }
-    
+  }
+
+  fireQuestion = () => {
+    console.log(this.props)
+    this.setState({
+      selectedQuestion: this.props.questionPool.shift()
+    })
+    this.produceQuestion()
   }
 
   render() {
@@ -29,6 +37,7 @@ export default class Category extends Component {
         </section>
         <Control 
           questionPool={this.state.categoryQuestions}
+          fireQuestion={this.fireQuestion}
         />
       </article>   
     )
