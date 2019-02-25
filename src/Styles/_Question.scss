@@ -7,7 +7,6 @@
 }
 
 .question {
-
 }
 
 .answers {
@@ -15,5 +14,5 @@
 }
 
 .answer {
-
+  @include buttons;
 }

@@ -9,7 +9,6 @@ export default class Category extends Component {
       categoryQuestions: props.questions.filter(question => {
        return question.category === this.props.category
       }),
-      answeredQuestions: [],
       selectedQuestion: {},
       questionCount: 0,
       questionMisses: 0,
@@ -18,11 +17,9 @@ export default class Category extends Component {
   }
 
   fireQuestion = () => {
-    // console.log(this.props)
     this.setState({
       selectedQuestion: this.state.categoryQuestions[this.state.questionCount]
     })
-    this.state.questionCount++;
     console.log(this.state.selectedQuestion)
     this.toggleShowQuestion()
   }
@@ -31,34 +28,45 @@ export default class Category extends Component {
     this.setState({ displayQuestion: !this.state.displayQuestion })
   }
 
-  evaluateQuestion = () => {
-
+  evaluateQuestion = (e) => {
+    if (e.target.innerText === this.state.selectedQuestion.answer) {
+      console.log('right');
+    } else {
+      console.log('wrong');
+      this.state.questionMisses++;
+      console.log(this.state.selectedQuestion)
+      this.props.collectMissedQuestions(this.state.selectedQuestion);
+    }
+    this.state.questionCount++;
+    this.toggleShowQuestions();
   }
 
   render() {
-    // let questionCount = 0;
-    // let questionMisses = 0;
     const totalQuestions = this.state.categoryQuestions.length
-    let score = `You've completed ${this.state.questionCount}/${totalQuestions} questions in this category.`
-    let misses = `You've missed ${this.state.questionMisses} questions.`
+    const score = `You've completed ${this.state.questionCount}/${totalQuestions} questions in this category.`
+    const misses = `You've missed ${this.state.questionMisses} questions.`
 
     return(
-      <article className="category-box">
-        <h2> {this.props.category} </h2>
-        <section className="category-stats">
-          <p>{score}</p>
-          <p>{misses}</p>
-        </section>
-        <Control 
-          questionPool={this.state.categoryQuestions}
-          fireQuestion={this.fireQuestion}
-        />
-        <Question 
-          displayQuestion={this.state.displayQuestion}
-          selectedQuestion={this.state.selectedQuestion}
-          toggleQuestion={this.toggleShowQuestion}
-        />  
-      </article> 
+      <div className="category-box">
+      { this.state.questionCount !== totalQuestions &&
+        <article>
+          <h2> {this.props.category} </h2>
+          <section className="category-stats">
+            <p>{score}</p>
+            <p>{misses}</p>
+          </section>
+          <Control 
+            questionPool={this.state.categoryQuestions}
+            fireQuestion={this.fireQuestion}
+          />
+          <Question 
+            displayQuestion={this.state.displayQuestion}
+            selectedQuestion={this.state.selectedQuestion}
+            evaluateQuestion={this.evaluateQuestion}
+          />  
+        </article>
+      }
+      </div>
     )
   }
 }

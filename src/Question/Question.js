@@ -5,7 +5,7 @@ export default class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      particularQuestion: {}
+      selectedAnswer: {}
     }
   }
 
@@ -20,10 +20,9 @@ export default class Question extends Component {
             </section>
             <section className="answers">
               {this.props.selectedQuestion.options.map((answerOption, i) => (
-                <div className="answer">{answerOption}</div>
+                <div className="answer" onClick={this.props.evaluateQuestion}>{answerOption}</div>
               ))}
             </section> 
-            <button onClick={this.props.toggleQuestion}>answer</button> 
           </article>
         </div>  
       }  

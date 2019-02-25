@@ -27,7 +27,10 @@ export default class App extends Component {
     })
   }
 
-  collectMissedQuestions() {}
+  collectMissedQuestions(obj) {
+    this.setState({ missedQuestions: this.state.missedQuestions.push(obj)})
+    console.log(this.state.missedQuestions)
+  }
 
   componentDidMount() {
     {this.findAllCategories()}
@@ -47,6 +50,7 @@ export default class App extends Component {
             <Category key={i}
                       category={category}
                       questions={this.state.questions}
+                      collectMissedQuestions={this.collectMissedQuestions}
             />
           ))}
         </section>
