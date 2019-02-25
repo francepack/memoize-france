@@ -1,0 +1,7 @@
+.feedback-overlay {
+  @include overlay
+}
+
+.feedback-box {
+  @include popup
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Control from '../Control/Control';
 import Question from '../Question/Question';
+import Feedback from '../Feedback/Feedback';
 
 export default class Category extends Component {
   constructor(props) {
@@ -11,8 +12,11 @@ export default class Category extends Component {
       }),
       selectedQuestion: {},
       questionCount: 0,
-      questionMisses: 0,
-      displayQuestion: false
+      incorrectCount: 0,
+      correctCount: 0,
+      currentQuestionCorrect: false,
+      displayQuestion: false,
+      showFeedback: false
     }
   }
 
@@ -28,23 +32,37 @@ export default class Category extends Component {
     this.setState({ displayQuestion: !this.state.displayQuestion })
   }
 
+  toggleShowFeedback = () => {
+    this.setState({ showFeedback: !this.state.showFeedback })
+  }
+
   evaluateQuestion = (e) => {
     if (e.target.innerText === this.state.selectedQuestion.answer) {
       console.log('right');
+      this.state.correctCount++;
+      this.setState({ 
+        correctCount: this.state.correctCount,
+        currentQuestionCorrect: true 
+      });
     } else {
       console.log('wrong');
-      this.state.questionMisses++;
-      console.log(this.state.selectedQuestion)
+      this.state.incorrectCount++;
+      this.setState({
+        incorrectCount: this.state.incorrectCount,
+        currentQuestionCorrect: false
+      });
       this.props.collectMissedQuestions(this.state.selectedQuestion);
     }
     this.state.questionCount++;
-    this.toggleShowQuestions();
+    this.toggleShowQuestion();
+    this.toggleShowFeedback();
   }
 
   render() {
     const totalQuestions = this.state.categoryQuestions.length
     const score = `You've completed ${this.state.questionCount}/${totalQuestions} questions in this category.`
-    const misses = `You've missed ${this.state.questionMisses} questions.`
+    const misses = `You've missed ${this.state.incorrectCount} questions.`
+    const summary = `You answered ${this.state.correctCount} of ${totalQuestions} correctly.`
 
     return(
       <div className="category-box">
@@ -63,8 +81,20 @@ export default class Category extends Component {
             displayQuestion={this.state.displayQuestion}
             selectedQuestion={this.state.selectedQuestion}
             evaluateQuestion={this.evaluateQuestion}
+          />
+          <Feedback 
+            showFeedback={this.state.showFeedback}
+            questionInfo={this.state.selectedQuestion.link}
+            toggleFeedback={this.toggleShowFeedback}
+            questionFeedback={this.state.currentQuestionCorrect}
           />  
         </article>
+      }
+      { this.state.questionCount === totalQuestions &&
+      <div className="finish-category-summary">
+        <p>All questions attempted.</p>
+        <span>{summary}</span>
+      </div>
       }
       </div>
     )
