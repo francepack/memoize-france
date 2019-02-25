@@ -11,10 +11,22 @@ export default class Question extends Component {
 
   render() {
     return(
-      <div className="overlay">
-        <article className="question-box">
-          <p>Question here</p>
-        </article>
+      <div>
+      {this.props.displayQuestion &&
+        <div className="question-overlay">
+          <article className="question-content">
+            <section className="question">
+              {this.props.selectedQuestion.question}
+            </section>
+            <section className="answers">
+              {this.props.selectedQuestion.options.map((answerOption, i) => (
+                <div className="answer">{answerOption}</div>
+              ))}
+            </section> 
+            <button onClick={this.props.toggleQuestion}>answer</button> 
+          </article>
+        </div>  
+      }  
       </div>    
     )
   }

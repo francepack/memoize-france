@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Control from '../Control/Control'
+import Control from '../Control/Control';
+import Question from '../Question/Question';
 
 export default class Category extends Component {
   constructor(props) {
@@ -8,25 +9,38 @@ export default class Category extends Component {
       categoryQuestions: props.questions.filter(question => {
        return question.category === this.props.category
       }),
-      answeredQuestions: []
+      answeredQuestions: [],
+      selectedQuestion: {},
+      questionCount: 0,
+      questionMisses: 0,
+      displayQuestion: false
     }
   }
 
   fireQuestion = () => {
-    console.log(this.props)
+    // console.log(this.props)
     this.setState({
-      selectedQuestion: this.props.questionPool.shift()
+      selectedQuestion: this.state.categoryQuestions[this.state.questionCount]
     })
-    this.produceQuestion()
+    this.state.questionCount++;
+    console.log(this.state.selectedQuestion)
+    this.toggleShowQuestion()
+  }
+
+  toggleShowQuestion = () => {
+    this.setState({ displayQuestion: !this.state.displayQuestion })
+  }
+
+  evaluateQuestion = () => {
+
   }
 
   render() {
-    console.log(this.state.categoryQuestions)
-    let questionCount = 0;
-    let questionMisses = 0;
-    let totalQuestions = this.state.categoryQuestions.length
-    let score = `You've completed ${questionCount}/${totalQuestions} questions in this category.`
-    let misses = `You've missed ${questionMisses} questions.`
+    // let questionCount = 0;
+    // let questionMisses = 0;
+    const totalQuestions = this.state.categoryQuestions.length
+    let score = `You've completed ${this.state.questionCount}/${totalQuestions} questions in this category.`
+    let misses = `You've missed ${this.state.questionMisses} questions.`
 
     return(
       <article className="category-box">
@@ -39,7 +53,12 @@ export default class Category extends Component {
           questionPool={this.state.categoryQuestions}
           fireQuestion={this.fireQuestion}
         />
-      </article>   
+        <Question 
+          displayQuestion={this.state.displayQuestion}
+          selectedQuestion={this.state.selectedQuestion}
+          toggleQuestion={this.toggleShowQuestion}
+        />  
+      </article> 
     )
   }
 }

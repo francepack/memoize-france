@@ -3,18 +3,10 @@
 }
 
 .directions-box {
-  border: solid 2px black;
-  border-radius: 10px;
-  background-color: grey;
+  @include popup;
   display: flex;
   flex-direction: column;
-  height: 50%;
   justify-content: space-between;
-  left: 25%;
-  position: absolute;
-  top: 25%;
-  width: 50%;
-  z-index: 3;
 }
 
 .directions-content {
