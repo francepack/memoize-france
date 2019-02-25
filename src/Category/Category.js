@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Control from '../Control/Control';
 import Question from '../Question/Question';
 import Feedback from '../Feedback/Feedback';
 
@@ -38,14 +37,12 @@ export default class Category extends Component {
 
   evaluateQuestion = (e) => {
     if (e.target.innerText === this.state.selectedQuestion.answer) {
-      console.log('right');
       this.state.correctCount++;
       this.setState({ 
         correctCount: this.state.correctCount,
         currentQuestionCorrect: true 
       });
     } else {
-      console.log('wrong');
       this.state.incorrectCount++;
       this.setState({
         incorrectCount: this.state.incorrectCount,
@@ -73,10 +70,7 @@ export default class Category extends Component {
             <p>{score}</p>
             <p>{misses}</p>
           </section>
-          <Control 
-            questionPool={this.state.categoryQuestions}
-            fireQuestion={this.fireQuestion}
-          />
+          <button onClick={this.fireQuestion}>Fire Question!</button>
           <Question 
             displayQuestion={this.state.displayQuestion}
             selectedQuestion={this.state.selectedQuestion}

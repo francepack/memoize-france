@@ -2,17 +2,13 @@ import React, { Component } from 'react';
 import '../Styles/index.scss';
 import Category from '../Category/Category';
 import Storage from '../Storage/Storage';
-import mockdata from './mockdata';
 import Header from '../Header/Header';
 
 export default class App extends Component {
   constructor() {
     super();
-
-    let storedQuestions = [];
-
     this.state = {
-      questions: mockdata.codeQuestions,
+      questions: [],
       categories: [],
       missedQuestions: []
     }
@@ -31,40 +27,25 @@ export default class App extends Component {
   }
 
   collectMissedQuestions = (obj) => {
-    // this.storeLocally(obj);
-    this.storeLocally(obj)
     this.state.missedQuestions.push(obj)
     this.setState({ missedQuestions: this.state.missedQuestions });
-    console.log(this.state.missedQuestions);
+    this.storeLocally(this.state.missedQuestions)
   }
 
   refreshQuiz() {}
 
-  storeLocally(obj) {
-    // try 1
-    // let questionToStore = JSON.stringify(obj);
-    // console.log(questionToStore)
-    // this.storedQuestions = this.storedQuestions.push(questionToStore);
-    // try 2
-    // this.storedQuestions = this.storedQuestions.push(obj)
-    // let JSONify = JSON.stringify(this.sortedQuestions)
-    // localStorage.setItem('missedQuestions', JSONify);
-    // try 3
-    // localStorage.setItem('missedQuestions', JSON.stringify(array))
-    // try 4
-    // localStorage.setItem('missedQuestions', JSON.stringify(obj))
-    console.log(obj)
+  storeLocally(arr) {
+    localStorage.setItem('missedQuestions', JSON.stringify(arr))
   } 
 
   getFromLocalStorage() {}
 
   componentDidMount() {
-    {this.findAllCategories()}
-  //   fetch('url')
-  //     .then(response => response.json())
-  //     .then(questions => this.setState({ questions: }))
-  //     .then(() => {this.findAllCategories()})
-  //     .catch(err => console.log('music error', err))
+    fetch('http://memoize-datasets.herokuapp.com/api/v1/MFcodeQuestions')
+      .then(response => response.json())
+      .then(questions => this.setState({ questions: questions.MFcodeQuestions }))
+      .then(() => {this.findAllCategories()})
+      .catch(err => console.log('music error', err))
   }
 
   render() {
