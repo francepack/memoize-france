@@ -6,9 +6,7 @@ export default class Category extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categoryQuestions: props.questions.filter(question => {
-       return question.category === this.props.category
-      }),
+      categoryQuestions: [],
       selectedQuestion: {},
       questionCount: 0,
       incorrectCount: 0,
@@ -23,7 +21,6 @@ export default class Category extends Component {
     this.setState({
       selectedQuestion: this.state.categoryQuestions[this.state.questionCount]
     })
-    console.log(this.state.selectedQuestion)
     this.toggleShowQuestion()
   }
 
@@ -37,22 +34,30 @@ export default class Category extends Component {
 
   evaluateQuestion = (e) => {
     if (e.target.innerText === this.state.selectedQuestion.answer) {
-      this.state.correctCount++;
       this.setState({ 
-        correctCount: this.state.correctCount,
+        correctCount: this.state.correctCount + 1,
+        questionCount: this.state.questionCount + 1,
         currentQuestionCorrect: true 
       });
     } else {
-      this.state.incorrectCount++;
       this.setState({
-        incorrectCount: this.state.incorrectCount,
+        incorrectCount: this.state.incorrectCount + 1,
+        questionCount: this.state.questionCount + 1,
         currentQuestionCorrect: false
       });
       this.props.collectMissedQuestions(this.state.selectedQuestion);
     }
-    this.state.questionCount++;
     this.toggleShowQuestion();
     this.toggleShowFeedback();
+  }
+
+  refreshCategory() {}
+
+  componentDidMount() {
+    let categoryQuestions = this.props.questions.filter(question => {
+       return question.category === this.props.category
+      })
+    this.setState({ categoryQuestions: categoryQuestions })
   }
 
   render() {
@@ -67,10 +72,10 @@ export default class Category extends Component {
         <article>
           <h2> {this.props.category} </h2>
           <section className="category-stats">
-            <p>{score}</p>
-            <p>{misses}</p>
+            <p className="category-completion">{score}</p>
+            <p className="category-misses">{misses}</p>
           </section>
-          <button onClick={this.fireQuestion}>Fire Question!</button>
+          <button onClick={this.fireQuestion} className="question-btn">Fire Question!</button>
           <Question 
             displayQuestion={this.state.displayQuestion}
             selectedQuestion={this.state.selectedQuestion}

@@ -11,7 +11,10 @@
 }
 
 .direction-btn {
-  left: 90%;
+  @include buttons;
+  border: 1px solid $lighttext;
+  left: 88%;
   position: absolute;
-  top: 5em;
+  top: 2em;
+  width: 5em;
 }

@@ -1,7 +1,19 @@
 .feedback-overlay {
-  @include overlay
+  @include overlay;
 }
 
 .feedback-box {
-  @include popup
+  @include popup;
+}
+
+.learn-more {
+  display: block;
+}
+
+a {
+  @include link;
+}
+
+.next-btn {
+  @include buttons;
 }

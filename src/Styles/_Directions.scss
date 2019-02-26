@@ -12,3 +12,10 @@
 .directions-content {
   margin: 2em;
 }
+
+.direction-close {
+  @include buttons;
+  position: relative;
+  width: 80%;
+  left: 10%;
+}

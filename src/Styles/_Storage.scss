@@ -1,3 +1,11 @@
 .storage {
   @include box;
+  height: 6rem;
+  margin: auto;
+  margin-bottom: 2em;
+}
+
+.storage-btn {
+  @include buttons;
+  margin-top: 0;
 }

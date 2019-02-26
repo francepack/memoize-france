@@ -7,12 +7,19 @@
 }
 
 .question {
+  font-size: 18px;
+  margin: 1em;
 }
 
 .answers {
-
+  left: 15%;
+  position: relative;
+  width: 70%;
 }
 
 .answer {
   @include buttons;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

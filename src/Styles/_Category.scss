@@ -1,5 +1,19 @@
 .category-box {
   @include box;
-  width: 26.6%;
-  min-width: 250px;
+}
+
+.category-box h2 {
+  margin-top: 1rem;
+}
+
+.category-completion {
+  margin: 1rem;
+}
+
+.category-misses {
+  margin-bottom: 0;
+}
+
+.question-btn {
+  @include buttons;
 }

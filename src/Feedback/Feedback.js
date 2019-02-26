@@ -11,14 +11,13 @@ function Feedback(props) {
           } { !props.questionFeedback &&
             <p className="incorrect-feedback">You best do some studyin!</p>
           }
-          <span>Learn more <a href={props.questionInfo}>At MDN</a></span>
-          <button onClick={props.toggleFeedback}>Movin along...</button>
+          <p className="learn-more">Learn more <a href={props.questionInfo}>At MDN</a></p>
+          <button className="next-btn" onClick={props.toggleFeedback}>Return</button>
         </article>  
       </div>
     }
     </div>
   )
 }
-
 
 export default Feedback;
