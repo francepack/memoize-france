@@ -95,7 +95,7 @@ export default class Category extends Component {
           { !this.props.category &&
           <div>
             <h2> Review </h2>
-            <p>Revisit the questions that you previously have missed!</p>
+            <p className="review">Revisit the questions that you previously have missed!</p>
           </div>
           }
           <section className="category-stats">
@@ -118,12 +118,15 @@ export default class Category extends Component {
       }
       { this.state.questionCount === totalQuestions &&
       <div className="finish-category-summary">
+       { !this.props.category &&
+          <div>
+            <h2> Review </h2>
+            <p className="review">Revisit the questions that you previously have missed!</p>
+          </div>
+          }
         <p>All questions attempted.</p>
         <span>{summary}</span>
       </div>
-      }
-      { 
-
       }
       </div>
     )

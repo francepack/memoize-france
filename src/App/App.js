@@ -48,18 +48,20 @@ export default class App extends Component {
   retrieveLocalStorage = () => {
     let storage = JSON.parse(localStorage.getItem('missedQuestions'));
     console.log(storage)
-    this.state.storedKeys = storage;
-    this.setState({ storedKeys: this.state.storedKeys })
-    let gatheredQuestions = this.state.storedKeys.map(id => {
-      return this.state.questions.find(question => {
-        if (question.id === id) {
-          return question;
-        }
+    if (storage !== null) {
+      this.state.storedKeys = storage;
+      this.setState({ storedKeys: this.state.storedKeys })
+      let gatheredQuestions = this.state.storedKeys.map(id => {
+        return this.state.questions.find(question => {
+          if (question.id === id) {
+            return question;
+          }
+        })
       })
-    })
-    console.log(gatheredQuestions)
-    this.setState({ storedQuestions: gatheredQuestions})
-    console.log(this.state.storedQuestions)
+      console.log(gatheredQuestions)
+      this.setState({ storedQuestions: gatheredQuestions})
+      console.log(this.state.storedQuestions)
+    }
     this.toggleCompileStorage()
   }
 
