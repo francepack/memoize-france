@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import '../Styles/index.scss';
 import Category from '../Category/Category';
-import Storage from '../Storage/Storage';
 import Header from '../Header/Header';
+import Storage from '../Storage/Storage';
 
 export default class App extends Component {
   constructor() {
@@ -10,7 +10,6 @@ export default class App extends Component {
     this.state = {
       questions: [],
       categories: [],
-      missedQuestions: [],
       storedQuestions: []
     }
   }
@@ -79,13 +78,13 @@ export default class App extends Component {
                       collectMissedQuestions={this.collectMissedQuestions}
             />
           ))}
-        </section>
+        </section> 
         <section className="storage-box"> 
-          <Storage 
-            missedQuestions={this.state.missedQuestions}
-            getQuestions={this.retrieveLocalStorage}
-          />
-        </section>    
+        <Storage 
+          missedQuestions={this.state.missedQuestions}
+          getQuestions={this.retrieveLocalStorage}
+        />
+      </section>   
       </div>
     );
   }
