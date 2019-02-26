@@ -1,3 +1,16 @@
+# codeQuiz
+This project was created to fulfill the requirements of Turing School. This is the final project of the first half of Turing.
+
+## Screenshots
+
+## Learning Goals
+
+## About
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

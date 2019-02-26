@@ -37,8 +37,6 @@ export default class App extends Component {
     console.log(this.state.storedKeys)
   }
 
-  refreshQuiz() {}
-
   storeLocally(arr) {
     localStorage.setItem('missedQuestions', JSON.stringify(arr));
     this.retrieveLocalStorage();
@@ -105,8 +103,3 @@ export default class App extends Component {
     );
   }
 }
-
-// <Storage 
-//           missedQuestions={this.state.missedQuestions}
-//           getQuestions={this.retrieveLocalStorage}
-//         />
