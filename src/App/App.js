@@ -10,7 +10,9 @@ export default class App extends Component {
     this.state = {
       questions: [],
       categories: [],
-      storedQuestions: []
+      storedKeys: [],
+      storedQuestions: [],
+      compileStorage: false
     }
   }
 
@@ -26,16 +28,13 @@ export default class App extends Component {
     })
   }
 
-  collectMissedQuestions = (obj) => {
-    // this.state.missedQuestions.push(obj)
-    // this.setState({ missedQuestions: this.state.missedQuestions });
-    console.log(this.state.storedQuestions)
-    if (!this.state.storedQuestions.includes(obj)) {
-      this.state.storedQuestions.push(obj)
-      this.storeLocally(this.state.storedQuestions)
+  collectMissedQuestions = (id) => {
+    console.log(this.state.storedKeys)
+    if (!this.state.storedKeys.includes(id)) {
+      this.state.storedKeys.push(id)
+      this.storeLocally(this.state.storedKeys)
     }
-    // this.state.missedQuestions
-    console.log(this.state.storedQuestions)
+    console.log(this.state.storedKeys)
   }
 
   refreshQuiz() {}
@@ -43,18 +42,29 @@ export default class App extends Component {
   storeLocally(arr) {
     localStorage.setItem('missedQuestions', JSON.stringify(arr));
     this.retrieveLocalStorage();
-    console.log(this.state.storedQuestions);
+    console.log(this.state.storedKeys);
   } 
 
   retrieveLocalStorage = () => {
     let storage = JSON.parse(localStorage.getItem('missedQuestions'));
-    // let pushStorage = storage.map(storedQuestion => {
-    //   this.state.storedQuestions.push(storedQuestion)
-    // })
-    if (storage) {
-      this.setState({ storedQuestions: storage })
-    }
+    console.log(storage)
+    this.state.storedKeys = storage;
+    this.setState({ storedKeys: this.state.storedKeys })
+    let gatheredQuestions = this.state.storedKeys.map(id => {
+      return this.state.questions.find(question => {
+        if (question.id === id) {
+          return question;
+        }
+      })
+    })
+    console.log(gatheredQuestions)
+    this.setState({ storedQuestions: gatheredQuestions})
     console.log(this.state.storedQuestions)
+    this.toggleCompileStorage()
+  }
+
+  toggleCompileStorage() {
+    this.setState({ compileStorage: true })
   }
 
   componentDidMount() {
@@ -62,8 +72,8 @@ export default class App extends Component {
       .then(response => response.json())
       .then(questions => this.setState({ questions: questions.MFcodeQuestions }))
       .then(() => {this.findAllCategories()})
+      .then(() => {this.retrieveLocalStorage()})
       .catch(err => console.log('fetch error', err));
-    this.retrieveLocalStorage();
   }
 
   render() {
@@ -72,20 +82,29 @@ export default class App extends Component {
         <Header />
         <section className="categories-section">
           {this.state.categories.map((category, i) => (
-            <Category key={i}
-                      category={category}
-                      questions={this.state.questions}
-                      collectMissedQuestions={this.collectMissedQuestions}
+            <Category 
+              key={i}
+              category={category}
+              questions={this.state.questions}
+              collectMissedQuestions={this.collectMissedQuestions}
             />
           ))}
         </section> 
-        <section className="storage-box"> 
-        <Storage 
-          missedQuestions={this.state.missedQuestions}
-          getQuestions={this.retrieveLocalStorage}
-        />
-      </section>   
+        <section className="storage-section"> 
+          {this.state.compileStorage &&
+          <Category 
+            questions={this.state.questions}
+            storage={this.state.storedQuestions}
+            collectMissedQuestions={this.collectMissedQuestions}
+          />
+          }
+        </section>   
       </div>
     );
   }
 }
+
+// <Storage 
+//           missedQuestions={this.state.missedQuestions}
+//           getQuestions={this.retrieveLocalStorage}
+//         />

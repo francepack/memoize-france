@@ -45,7 +45,7 @@ export default class Category extends Component {
         questionCount: this.state.questionCount + 1,
         currentQuestionCorrect: false
       });
-      this.props.collectMissedQuestions(this.state.selectedQuestion);
+      this.props.collectMissedQuestions(this.state.selectedQuestion.id);
     }
     this.toggleShowQuestion();
     this.toggleShowFeedback();
@@ -53,11 +53,30 @@ export default class Category extends Component {
 
   refreshCategory() {}
 
+  gatherReviewQuestions() {
+    console.log()
+    // let gatheredQuestions = this.props.storage.reduce((acc, id) => {
+    //   let findquestions = this.props.questions.filter(question => {
+    //     if (question.id === id) {return question}
+    //   })
+    //   acc.push(findquestions);
+    //   return acc;
+    // }, [])
+    // console.log(gatheredQuestions)
+    // this.setState({ categoryQuestions: gatheredQuestions })
+  }
+
   componentDidMount() {
-    let categoryQuestions = this.props.questions.filter(question => {
-       return question.category === this.props.category
+    if (this.props.category) {
+      let categoryQuestions = this.props.questions.filter(question => {
+        return question.category === this.props.category
       })
     this.setState({ categoryQuestions: categoryQuestions })
+    } else {
+      console.log(this.props.storage)
+      this.setState({ categoryQuestions: this.props.storage})
+      // this.gatherReviewQuestions(this.props.storage); 
+    }
   }
 
   render() {
@@ -70,7 +89,15 @@ export default class Category extends Component {
       <div className="category-box">
       { this.state.questionCount !== totalQuestions &&
         <article>
+          { this.props.category &&
           <h2> {this.props.category} </h2>
+          }
+          { !this.props.category &&
+          <div>
+            <h2> Review </h2>
+            <p>Revisit the questions that you previously have missed!</p>
+          </div>
+          }
           <section className="category-stats">
             <p className="category-completion">{score}</p>
             <p className="category-misses">{misses}</p>
@@ -94,6 +121,9 @@ export default class Category extends Component {
         <p>All questions attempted.</p>
         <span>{summary}</span>
       </div>
+      }
+      { 
+
       }
       </div>
     )
