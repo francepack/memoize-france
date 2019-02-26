@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import '../Styles/index.scss';
 import Category from '../Category/Category';
 import Header from '../Header/Header';
-import Storage from '../Storage/Storage';
 
 export default class App extends Component {
   constructor() {

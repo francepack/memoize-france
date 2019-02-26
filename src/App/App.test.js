@@ -2,6 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import App from './App';
 
+import {configure} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+
+configure({ adapter: new Adapter() });
+
 // mockData has 3 entries, each with a unique category
 const mockData= [ {id:'1', category:'People', question:'Who is it?', options:['me', 'you', 'neither', 'both'], answer:'you', link:'http://plcaeholder.com'}, {id:'2', category:'Age', question:'How old is my nephew?', options:['1', '2', '3', '4'], answer:'3', link:'http://plcaeholder.com'}, {id:'3', category:'Denver', question:'What is the best place to eat in Denver?', options:['Casa Bonita', 'Chipotle', 'Denver Teds', 'Birdcall'], answer:'Birdcall', link:'http://plcaeholder.com'} ]
 
