@@ -6,10 +6,16 @@ function Feedback(props) {
     { props.showFeedback &&
       <div className="feedback-overlay">
         <article className="feedback-box">
-          { props.questionFeedback && 
-            <p className="positive-feedback">Well Done!</p>
+          { props.questionFeedback &&
+          <div> 
+            <p className="correct-feedback">Correct!</p>
+            <p className="sub-feedback">Nailed it - On to the next!</p>
+          </div>  
           } { !props.questionFeedback &&
-            <p className="incorrect-feedback">You best do some studyin!</p>
+          <div>  
+            <p className="incorrect-feedback">Sorry - Incorrect!</p>
+            <p className="sub-feedback">Check out the below link for review. If you visit this quiz later, see the review section on the bottom of the page to try this one again.</p>
+          </div>  
           }
           <p className="learn-more">Learn more <a href={props.questionInfo}>At MDN</a></p>
           <button className="next-btn" onClick={props.toggleFeedback}>Return</button>

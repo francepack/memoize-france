@@ -6,9 +6,9 @@ function Directions(props) {
       {props.displayDirections &&
       <div className="directions-overlay">
         <article className="directions-box">
-          <p className="directions-content">There is always more to learn when it comes to coding! Find the category you'd like to learn about, test your knowledge, and try to conquer each subject area!</p> 
-          <p className="directions-content">You are able to revist the questions you may have missed at the bottom of the quiz.</p>
-          <p className="directions-content">To update questions saved for review, or to restart a whole category, simply refresh the page.</p>
+          <p>There is always more to learn about coding. Pick a category to be quizzed on, and test your knowledge. Try to conquer each subject area!</p> 
+          <p>You can revist the questions that gave you trouble at the bottom of the quiz.</p>
+          <p>To update questions saved for review, or to restart a whole category, simply refresh the page.*</p> <span>*Yes, I would like to improve this functionality in a later version.</span>
           <button className="direction-close" onClick={props.toggleDirections}>close</button>
         </article>
       </div>

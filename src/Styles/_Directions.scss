@@ -9,8 +9,13 @@
   justify-content: space-between;
 }
 
-.directions-content {
-  margin: 1em;
+.directions-box p {
+  margin: .8em .8em 0 .8em;
+}
+
+.directions-box span {
+  display: inline;
+  font-size: 10px;
 }
 
 .direction-close {

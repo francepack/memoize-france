@@ -1,8 +1,7 @@
-.header {}
-
 .title {
   font-size: 4em;
   margin: 1rem 0 0 0;
+  letter-spacing: 2px;
 }
 
 .subtitle {
@@ -13,7 +12,9 @@
 .direction-btn {
   @include buttons;
   border: 1px solid $lighttext;
-  left: 88%;
+  font-size: 14px;
+  left: 86%;
+  letter-spacing: 1px;
   position: absolute;
   top: 2em;
   width: 5em;

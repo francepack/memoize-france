@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-const mockData= [];
+// mockData has 3 entries, each with a unique category
+const mockData= [ {id:'1', category:'People', question:'Who is it?', options:['me', 'you', 'neither', 'both'], answer:'you', link:'http://plcaeholder.com'}, {id:'2', category:'Age', question:'How old is my nephew?', options:['1', '2', '3', '4'], answer:'3', link:'http://plcaeholder.com'}, {id:'3', category:'Denver', question:'What is the best place to eat in Denver?', options:['Casa Bonita', 'Chipotle', 'Denver Teds', 'Birdcall'], answer:'Birdcall', link:'http://plcaeholder.com'} ];
 
 describe('App', () => {
   let wrapper;
@@ -16,10 +17,20 @@ describe('App', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-});
+  it('should have default states', () => {
+    expect(wrapper.state()).toEqual({
+      questions: [], 
+      categories: [], 
+      storedKeys: [],
+      storedQuestions: [],
+      compileStorage: false
+    });
 
-// it('renders without crashing', () => {
-//   const div = document.createElement('div');
-//   ReactDOM.render(<App />, div);
-//   ReactDOM.unmountComponentAtNode(div);
-// });
+  it('should update categories state when findAllCategories is invoked', () => {
+    wrapper.setState({'questions': mockData});
+    expect(wrapper.state('categories')).toEqual([]);
+    wrapper.instance().findAllCategories();
+    expect(wrapper.state('categories')).toHaveLength(3);
+  });  
+
+});
