@@ -40,6 +40,7 @@
   top: 20%;
   width: 50%;
   z-index: 3;
+  // fadein
   -webkit-animation: fadein .5s; 
   -moz-animation: fadein .5s; 
   -ms-animation: fadein .5s; 
@@ -50,20 +51,20 @@
 //Used for popups to obscure background
 @mixin overlay {
   background: rgba(0, 0, 0, 0.8);
+  bottom: 0;
+  height: 100%;
+  left: 0;
   position: fixed;
   right: 0;
-  left: 0;
-  bottom: 0;
   top: 0;
   width: 100%;
-  height: 100%;
   z-index: 2;
 }
 
 //Used for anchor tags
 @mixin link {
-  text-decoration: none;
   color: $link;
+  text-decoration: none;
 }
 
 //Keyframes for fadein

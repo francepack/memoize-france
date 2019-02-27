@@ -16,8 +16,8 @@
 
 .question-btn {
   @include buttons;
-  font-size: 14px;
   color: $fireQuestion;
+  font-size: 14px;
   width: 60%;
   &:hover{
     color:$activeFireQuestion;
