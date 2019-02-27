@@ -1,16 +1,17 @@
 # codeQuiz
 This project was created to fulfill the requirements of Turing School. This is the final project of the first half of Turing.
 
+## About
+This app was designed to be a learning tool for coders. The idea is that the dataset of questions could expand to hold any number of categories, and those questions would be compiled together for review. Questions a user misses can be reviewed when the site is visited again, using local storage.
+
 ## Screenshots
 
 ## Learning Goals
-
-## About
-
+This is my first solo project in React. Previously, we have worked in groups of three. For this project, I took what I had learned with a group and applied the concepts of React to create an interactive learning app. I solidified my knowledge of components, props, and passing data down, bringing action data back up. We also used a fetch call to gather our data hosted externally, so we practiced handling that sort of asynchronous request.
 
 
 
-
+### React specs
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -54,7 +54,14 @@ export default class Category extends Component {
   endQuestion = () => {
     this.toggleShowQuestion();
     this.toggleShowFeedback();
-    // this.setState({ questionCount: this.state.questionCount +1 })
+  }
+
+  refreshCategory = () => {
+    this.setState({
+      questionCount: 0,
+      incorrectCount: 0,
+      correctCount: 0
+    })
   }
 
   componentDidMount() {
@@ -79,7 +86,7 @@ export default class Category extends Component {
           { !this.props.category &&
           <div>
             <h2> Review </h2>
-            <p className="review">Revisit the questions that you previously have missed!</p>
+            <p className="review">Revisit the questions you missed previously.</p>
           </div>
           }
           <section className="category-stats">
@@ -105,11 +112,12 @@ export default class Category extends Component {
        { !this.props.category &&
           <div>
             <h2> Review </h2>
-            <p className="review">Revisit the questions that you previously have missed!</p>
+            <p className="review">Revisit the questions that you missed on prior visits to this site.</p>
           </div>
           }
-        <p>All questions attempted.</p>
+        <p className="category-finish">All questions attempted.</p>
         <p>You answered {this.state.correctCount} of {this.state.categoryQuestions.length} correctly.</p>
+        <button onClick={this.refreshCategory} className="refresh-category">Restart Category</button>
       </div>
       }
       </div>

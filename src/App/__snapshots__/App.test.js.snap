@@ -27,7 +27,6 @@ exports[`App should match snapshot when it is ready to compileStorage 1`] = `
   >
     <Category
       collectMissedQuestions={[Function]}
-      questions={Array []}
       storage={Array []}
     />
   </section>

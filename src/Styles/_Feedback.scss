@@ -9,21 +9,23 @@
   justify-content: space-between;
 }
 
+.feedback-head {
+  font-size: 30px;
+  margin: 1em 0 1.5em 0;
+  font-weight: 700;
+}
+
 .correct-feedback {
   color: $correct;
-  font-size: 30px;
-  margin-top: 1em;
 }
 
 .incorrect-feedback {
   color: $incorrect;
-  font-size: 30px;
-  margin-top: 1em;
 }
 
 .sub-feedback {
   font-size: 16px;
-  margin: 1em 1em 0 1em;
+  margin: 1em 10% 0 10%;
 }
 
 .learn-more {
@@ -46,7 +48,6 @@ a {
 
 @media screen and (max-width: 740px) {
   .feedback-box {
-    height: 60%;
     left: 10%;
     width: 80%;
   }

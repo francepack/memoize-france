@@ -10,7 +10,7 @@ exports[`Feedback should match snapshot 1`] = `
     >
       <div>
         <p
-          className="correct-feedback"
+          className="correct-feedback feedback-head"
         >
           Correct!
         </p>
@@ -51,7 +51,7 @@ exports[`Feedback should match snapshot 2`] = `
        
       <div>
         <p
-          className="incorrect-feedback"
+          className="incorrect-feedback feedback-head"
         >
           Sorry - Incorrect!
         </p>

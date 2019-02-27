@@ -59,7 +59,9 @@ exports[`Category should match snapshot 2`] = `
   <div
     className="finish-category-summary"
   >
-    <p>
+    <p
+      className="category-finish"
+    >
       All questions attempted.
     </p>
     <p>
@@ -69,6 +71,12 @@ exports[`Category should match snapshot 2`] = `
       3
        correctly.
     </p>
+    <button
+      className="refresh-category"
+      onClick={[Function]}
+    >
+      Restart Category
+    </button>
   </div>
 </div>
 `;

@@ -86,7 +86,6 @@ export default class App extends Component {
         <section className="storage-section"> 
           {this.state.compileStorage &&
           <Category 
-            questions={this.state.questions}
             storage={this.state.storedQuestions}
             collectMissedQuestions={this.collectMissedQuestions}
           />

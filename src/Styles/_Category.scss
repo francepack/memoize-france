@@ -17,8 +17,12 @@
 .question-btn {
   @include buttons;
   font-size: 14px;
-  color: $fire;
-  width: 60%
+  color: $fireQuestion;
+  width: 60%;
+  &:hover{
+    color:$activeFireQuestion;
+  }
+
 }
 
 .finish-category-summary span {
@@ -27,4 +31,18 @@
 
 .review {
   margin: 0 1em;
+}
+
+.category-finish {
+  margin-bottom: 4em
+}
+
+.refresh-category {
+  @include buttons;
+  color: $fireQuestion;
+  font-size: 14px;
+  width: 60%;
+  &:hover{
+    color:$activeFireQuestion;
+  }
 }
