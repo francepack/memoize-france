@@ -25,7 +25,7 @@ describe('Question', () => {
   });
 
   it('should invoke evaluateQuestion when an answer is clicked', () => {
-    wrapper.find('.answer').simulate('click', { preventDefault: () => {}});
+    wrapper.find('.answer').at(0).simulate('click', { preventDefault: () => {}});
     expect(evaluateQuestion).toBeCalled(); 
   });
 

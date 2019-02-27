@@ -18,6 +18,7 @@ describe('Directions', () => {
         toggleDirections={toggleDirections}
       />
     )
+    wrapper.setProps({ displayDirections: true, selectedQuestion: {id:'1', category:'People', question:'Who is it?', options:['me', 'you', 'neither', 'both'], answer:'you', link:'http://plcaeholder.com'} });
   });
 
   it('should match snapshot', () => {

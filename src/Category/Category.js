@@ -17,7 +17,7 @@ export default class Category extends Component {
     }
   }
 
-  fireQuestion = () => {
+  showQuestion = () => {
     this.setState({
       selectedQuestion: this.state.categoryQuestions[this.state.questionCount]
     })
@@ -51,21 +51,6 @@ export default class Category extends Component {
     this.toggleShowFeedback();
   }
 
-  refreshCategory() {}
-
-  gatherReviewQuestions() {
-    console.log()
-    // let gatheredQuestions = this.props.storage.reduce((acc, id) => {
-    //   let findquestions = this.props.questions.filter(question => {
-    //     if (question.id === id) {return question}
-    //   })
-    //   acc.push(findquestions);
-    //   return acc;
-    // }, [])
-    // console.log(gatheredQuestions)
-    // this.setState({ categoryQuestions: gatheredQuestions })
-  }
-
   componentDidMount() {
     if (this.props.category) {
       let categoryQuestions = this.props.questions.filter(question => {
@@ -73,21 +58,14 @@ export default class Category extends Component {
       })
     this.setState({ categoryQuestions: categoryQuestions })
     } else {
-      console.log(this.props.storage)
       this.setState({ categoryQuestions: this.props.storage})
-      // this.gatherReviewQuestions(this.props.storage); 
     }
   }
 
   render() {
-    const totalQuestions = this.state.categoryQuestions.length
-    const score = `You've completed ${this.state.questionCount}/${totalQuestions} questions in this category.`
-    const misses = `You've missed ${this.state.incorrectCount} questions.`
-    const summary = `You answered ${this.state.correctCount} of ${totalQuestions} correctly.`
-
     return(
       <div className="category-box">
-      { this.state.questionCount !== totalQuestions &&
+      { this.state.questionCount !== this.state.categoryQuestions.length &&
         <article>
           { this.props.category &&
           <h2> {this.props.category} </h2>
@@ -99,10 +77,10 @@ export default class Category extends Component {
           </div>
           }
           <section className="category-stats">
-            <p className="category-completion">{score}</p>
-            <p className="category-misses">{misses}</p>
+            <p className="category-completion">You've completed {this.state.questionCount}/{this.state.categoryQuestions.length} questions in this category.</p>
+            <p className="category-misses">You've missed {this.state.incorrectCount} questions.</p>
           </section>
-          <button onClick={this.fireQuestion} className="question-btn">Fire Question!</button>
+          <button onClick={this.showQuestion} className="question-btn">Fire Question!</button>
           <Question 
             displayQuestion={this.state.displayQuestion}
             selectedQuestion={this.state.selectedQuestion}
@@ -116,7 +94,7 @@ export default class Category extends Component {
           />  
         </article>
       }
-      { this.state.questionCount === totalQuestions &&
+      { this.state.questionCount === this.state.categoryQuestions.length &&
       <div className="finish-category-summary">
        { !this.props.category &&
           <div>
@@ -125,7 +103,7 @@ export default class Category extends Component {
           </div>
           }
         <p>All questions attempted.</p>
-        <span>{summary}</span>
+        <span>You answered {this.state.correctCount} of {this.state.categoryQuestions.length} correctly.</span>
       </div>
       }
       </div>

@@ -22,6 +22,11 @@ describe('App', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('should match snapshot when it is ready to compileStorage', () => {
+    wrapper.setState({'compileStorage': true});
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it('should have default states', () => {
     expect(wrapper.state()).toEqual({
       questions: [], 

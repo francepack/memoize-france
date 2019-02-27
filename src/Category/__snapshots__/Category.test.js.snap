@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Category should match snapshot 1`] = `
+<div
+  className="category-box"
+>
+  <article>
+    <h2>
+       
+      People
+      Age
+      Denver
+       
+    </h2>
+    <section
+      className="category-stats"
+    >
+      <p
+        className="category-completion"
+      >
+        You've completed 
+        0
+        /
+        3
+         questions in this category.
+      </p>
+      <p
+        className="category-misses"
+      >
+        You've missed 
+        0
+         questions.
+      </p>
+    </section>
+    <button
+      className="question-btn"
+      onClick={[Function]}
+    >
+      Fire Question!
+    </button>
+    <Question
+      displayQuestion={false}
+      evaluateQuestion={[Function]}
+      selectedQuestion={Object {}}
+    />
+    <Feedback
+      questionFeedback={false}
+      showFeedback={false}
+      toggleFeedback={[Function]}
+    />
+  </article>
+</div>
+`;
+
+exports[`Category should match snapshot 2`] = `
+<div
+  className="category-box"
+>
+  <div
+    className="finish-category-summary"
+  >
+    <p>
+      All questions attempted.
+    </p>
+    <span>
+      You answered 
+      0
+       of 
+      3
+       correctly.
+    </span>
+  </div>
+</div>
+`;

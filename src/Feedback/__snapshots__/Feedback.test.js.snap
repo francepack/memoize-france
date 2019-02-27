@@ -1,64 +1,81 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App should match snapshot 1`] = `undefined`;
-
 exports[`Feedback should match snapshot 1`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Feedback />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "checkPropTypes": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "host",
-    "props": Object {
-      "children": undefined,
-    },
-    "ref": null,
-    "rendered": null,
-    "type": "div",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": undefined,
-      },
-      "ref": null,
-      "rendered": null,
-      "type": "div",
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "legacyContextMode": "parent",
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getChildContext": Object {
-            "calledByRenderer": false,
-          },
-          "getDerivedStateFromProps": true,
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-}
+<div>
+  <div
+    className="feedback-overlay"
+  >
+    <article
+      className="feedback-box"
+    >
+      <div>
+        <p
+          className="correct-feedback"
+        >
+          Correct!
+        </p>
+        <p
+          className="sub-feedback"
+        >
+          Nailed it - On to the next!
+        </p>
+      </div>
+       
+      <p
+        className="learn-more"
+      >
+        Learn more 
+        <a>
+          At MDN
+        </a>
+      </p>
+      <button
+        className="next-btn"
+        onClick={[MockFunction]}
+      >
+        Return
+      </button>
+    </article>
+  </div>
+</div>
+`;
+
+exports[`Feedback should match snapshot 2`] = `
+<div>
+  <div
+    className="feedback-overlay"
+  >
+    <article
+      className="feedback-box"
+    >
+       
+      <div>
+        <p
+          className="incorrect-feedback"
+        >
+          Sorry - Incorrect!
+        </p>
+        <p
+          className="sub-feedback"
+        >
+          Check out the below link for review. If you visit this quiz later, see the review section on the bottom of the page to try this one again.
+        </p>
+      </div>
+      <p
+        className="learn-more"
+      >
+        Learn more 
+        <a>
+          At MDN
+        </a>
+      </p>
+      <button
+        className="next-btn"
+        onClick={[MockFunction]}
+      >
+        Return
+      </button>
+    </article>
+  </div>
+</div>
 `;

@@ -15,7 +15,7 @@ export default class App extends Component {
     }
   }
 
-  findAllCategories = () => {
+  findAllCategories() {
     let allCategories = this.state.questions.reduce((acc, question) => {
       if (!acc.includes(question.category)) {
         acc.push(question.category);
@@ -28,23 +28,19 @@ export default class App extends Component {
   }
 
   collectMissedQuestions = (id) => {
-    console.log(this.state.storedKeys)
     if (!this.state.storedKeys.includes(id)) {
       this.state.storedKeys.push(id)
       this.storeLocally(this.state.storedKeys)
     }
-    console.log(this.state.storedKeys)
   }
 
   storeLocally(arr) {
     localStorage.setItem('missedQuestions', JSON.stringify(arr));
     this.retrieveLocalStorage();
-    console.log(this.state.storedKeys);
   } 
 
-  retrieveLocalStorage = () => {
+  retrieveLocalStorage() {
     let storage = JSON.parse(localStorage.getItem('missedQuestions'));
-    console.log(storage)
     if (storage !== null) {
       this.state.storedKeys = storage;
       this.setState({ storedKeys: this.state.storedKeys })
@@ -55,9 +51,7 @@ export default class App extends Component {
           }
         })
       })
-      console.log(gatheredQuestions)
       this.setState({ storedQuestions: gatheredQuestions})
-      console.log(this.state.storedQuestions)
     }
     this.toggleCompileStorage()
   }
