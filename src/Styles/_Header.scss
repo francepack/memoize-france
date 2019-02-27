@@ -19,3 +19,13 @@
   top: 2em;
   width: 5em;
 }
+
+@media screen and (max-width: 510px) {
+  .direction-btn {
+    font-size: 12px;
+    padding: 0;
+    left: 86%;
+    width: 3em;
+    height: 3em;
+  }
+}

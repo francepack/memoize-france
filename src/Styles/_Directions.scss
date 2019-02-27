@@ -13,14 +13,15 @@
   margin: .8em .8em 0 .8em;
 }
 
-.directions-box span {
-  display: inline;
-  font-size: 10px;
-}
-
 .direction-close {
   @include buttons;
   position: relative;
   width: 80%;
   left: 10%;
+}
+
+@media screen and (max-width: 510px) {
+  .directions-box {
+    height: 60%;
+  }  
 }

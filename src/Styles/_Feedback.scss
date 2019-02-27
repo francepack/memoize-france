@@ -43,3 +43,11 @@ a {
   width: 80%;
   margin-bottom: 2em;
 }
+
+@media screen and (max-width: 740px) {
+  .feedback-box {
+    height: 60%;
+    left: 10%;
+    width: 80%;
+  }
+}

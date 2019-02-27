@@ -103,7 +103,7 @@ export default class Category extends Component {
           </div>
           }
         <p>All questions attempted.</p>
-        <span>You answered {this.state.correctCount} of {this.state.categoryQuestions.length} correctly.</span>
+        <p>You answered {this.state.correctCount} of {this.state.categoryQuestions.length} correctly.</p>
       </div>
       }
       </div>
