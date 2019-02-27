@@ -16,6 +16,9 @@
 
 .question-btn {
   @include buttons;
+  font-size: 14px;
+  color: $fire;
+  width: 60%
 }
 
 .finish-category-summary span {

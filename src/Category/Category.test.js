@@ -11,7 +11,8 @@ configure({ adapter: new Adapter() });
 const mockData= [ {id:'1', category:'People', question:'Who is it?', options:['me', 'you', 'neither', 'both'], answer:'you', link:'http://plcaeholder.com'}, {id:'2', category:'People', question:'How old is my nephew?', options:['1', '2', '3', '4'], answer:'3', link:'http://plcaeholder.com'}, {id:'3', category:'People', question:'What is the best place to eat in Denver?', options:['Casa Bonita', 'Chipotle', 'Denver Teds', 'Birdcall'], answer:'Birdcall', link:'http://plcaeholder.com'} ];
 const mockCategories= [ 'People', 'Age', 'Denver' ];
 const showQuestion = jest.fn();
-
+const toggleShowQuestion = jest.fn();
+const toggleShowFeedback = jest.fn();
 
 
 describe('Category', () => {
@@ -73,14 +74,31 @@ describe('Category', () => {
     expect(wrapper.state('showFeedback')).toEqual(true);
   });
 
+  it('should increase the state questionCount by 1 when toggleShowFeedback is invoked twice', () => {
+    expect(wrapper.state('questionCount')).toEqual(0);
+    wrapper.instance().toggleShowFeedback();
+    expect(wrapper.state('questionCount')).toEqual(0);
+    wrapper.instance().toggleShowFeedback();
+    expect(wrapper.state('questionCount')).toEqual(1);
+  });
+
+  it('should invoke endQuestion when evaluateQuestion is called', () => {
+    wrapper.instance().evaluateQuestion();
+    expect(endQuestion).toBeCalled();
+  });
+
+  it('should invoke toggleShowQuestion and toggleShowFeedback when endQuestion is run', () => {
+    wrapper.instance().endQuestion();
+    expect(toggleShowQuestion).toBeCalled(); 
+    expect(toggleShowFeedback).toBeCalled(); 
+  });
+
   // it('shold update questionCount and correct/incorrectCount states when evaluateQuestion is invoked', () => {
-  //   expect(wrapper.state('questionCount')).toEqual(0);
   //   expect(wrapper.state('correctCount')).toEqual(0);
   //   expect(wrapper.state('incorrectCount')).toEqual(0);
   //   expect(wrapper.state('currentQuestionCorrect')).toEqual(false);
   //   wrapper.setState({'selectedQuestion': {id:'1', category:'People', question:'Who is it?', options:['me', 'you', 'neither', 'both'], answer:'you', link:'http://plcaeholder.com'});
   //   evaluateQuestion();
-  //   expect(wrapper.state('questionCount')).toEqual(1);
   //   expect(wrapper.state('correctCount')).toEqual(1);
   //   expect(wrapper.state('incorrectCount')).toEqual(0);
   //   expect(wrapper.state('currentQuestionCorrect')).toEqual(true);

@@ -15,12 +15,8 @@ exports[`Directions should match snapshot 1`] = `
         You can revist the questions that gave you trouble at the bottom of the quiz.
       </p>
       <p>
-        To update questions saved for review, or to restart a whole category, simply refresh the page.*
+        To update questions saved for review, or to restart a whole category, simply refresh the page.
       </p>
-       
-      <span>
-        *Yes, I would like to improve this functionality in a later version.
-      </span>
       <button
         className="direction-close"
         onClick={[MockFunction]}

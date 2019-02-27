@@ -62,13 +62,13 @@ exports[`Category should match snapshot 2`] = `
     <p>
       All questions attempted.
     </p>
-    <span>
+    <p>
       You answered 
       0
        of 
       3
        correctly.
-    </span>
+    </p>
   </div>
 </div>
 `;

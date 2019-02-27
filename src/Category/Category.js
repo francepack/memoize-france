@@ -29,6 +29,9 @@ export default class Category extends Component {
   }
 
   toggleShowFeedback = () => {
+    if (this.state.showFeedback === true) {
+      this.setState({ questionCount: this.state.questionCount +1 })
+    }
     this.setState({ showFeedback: !this.state.showFeedback })
   }
 
@@ -36,19 +39,22 @@ export default class Category extends Component {
     if (e.target.innerText === this.state.selectedQuestion.answer) {
       this.setState({ 
         correctCount: this.state.correctCount + 1,
-        questionCount: this.state.questionCount + 1,
         currentQuestionCorrect: true 
       });
     } else {
       this.setState({
         incorrectCount: this.state.incorrectCount + 1,
-        questionCount: this.state.questionCount + 1,
         currentQuestionCorrect: false
       });
       this.props.collectMissedQuestions(this.state.selectedQuestion.id);
     }
+    this.endQuestion();
+  }
+
+  endQuestion = () => {
     this.toggleShowQuestion();
     this.toggleShowFeedback();
+    // this.setState({ questionCount: this.state.questionCount +1 })
   }
 
   componentDidMount() {
