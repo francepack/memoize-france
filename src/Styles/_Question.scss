@@ -19,16 +19,16 @@
 
 .answer {
   @include buttons;
+  align-items: center;
   display: flex;
   height: 40px;
   justify-content: center;
-  align-items: center;
 }
 
 @media screen and (max-width: 740px) {
   .question-content {
-    width: 80%;
-    left: 10%;
     height: 60%;
+    left: 10%;
+    width: 80%;
   }
 }

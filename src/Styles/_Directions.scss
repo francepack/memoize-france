@@ -15,9 +15,9 @@
 
 .direction-close {
   @include buttons;
+  left: 10%;
   position: relative;
   width: 80%;
-  left: 10%;
 }
 
 @media screen and (max-width: 510px) {
