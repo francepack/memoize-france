@@ -41,9 +41,9 @@ a {
   @include buttons;
   font-size: 14px;
   left: 10%;
+  margin-bottom: 2em;
   position: relative;
   width: 80%;
-  margin-bottom: 2em;
 }
 
 @media screen and (max-width: 740px) {

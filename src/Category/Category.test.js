@@ -99,11 +99,11 @@ describe('Category', () => {
   //   expect(toggleShowFeedback).toBeCalled(); 
   // });
 
-  // it('should invoke endQuestion when evaluateQuestion is called', () => {
-  //   wrapper.setState({'selectedQuestion': {id:'1', category:'People', question:'Who is it?', options:['me', 'you', 'neither', 'both'], answer:'you', link:'http://plcaeholder.com'} }); 
-  //   wrapper.instance().evaluateQuestion({target: {innerText: 'you'}});
-  //   expect(endQuestion).toBeCalled();
-  // });
+  it('should invoke endQuestion when evaluateQuestion is called', () => {
+    wrapper.setState({'selectedQuestion': {id:'1', category:'People', question:'Who is it?', options:['me', 'you', 'neither', 'both'], answer:'you', link:'http://plcaeholder.com'} }); 
+    wrapper.instance().evaluateQuestion({target: {innerText: 'you'}});
+    expect(endQuestion).toBeCalled();
+  });
 
   // it('shold update questionCount and correct/incorrectCount states when evaluateQuestion is invoked', () => {
   //   expect(wrapper.state('correctCount')).toEqual(0);
