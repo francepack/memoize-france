@@ -1,5 +1,5 @@
 # codeQuiz
-Learning to code can be a daunting taks- there are so many subjects to practice, such as vocabularly, concepts, syntax... the list goes on! This application is designed to accept a scalable set of review questions and deliver them to a user separated by category. A user can track their progress in each category, as well as revisit any questions they may have missed. 
+Learning to code can be a daunting task- there are so many subjects to practice, such as vocabularly, concepts, syntax... the list goes on! This application is designed to accept a scalable set of review questions and deliver them to a user separated by category. A user can track their progress in each category, as well as revisit any questions they may have missed, saved to local storage. 
 
 This project was created to fulfill the requirements of completing the first half of Turing School. It was build with React.
 
