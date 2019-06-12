@@ -10,19 +10,13 @@
 }
 
 .directions-box p {
-  margin: .8em .8em 0 .8em;
+  margin: 2em 2em 0 2em;
 }
 
 .direction-close {
   @include buttons;
+  font-weight: 700;
   left: 10%;
   position: relative;
   width: 80%;
-}
-
-@media screen and (max-width: 510px) {
-  .directions-box {
-    left: 10%;
-    width: 80%;
-  }  
 }

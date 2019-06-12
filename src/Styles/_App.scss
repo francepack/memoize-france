@@ -22,17 +22,3 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-.categories-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.storage-section {
-  display: flex;
-  height: 18rem;
-  justify-content: center;
-  margin: auto;
-  margin-bottom: 2em;
-}

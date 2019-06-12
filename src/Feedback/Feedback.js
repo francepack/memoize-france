@@ -17,7 +17,7 @@ function Feedback(props) {
             <p className="sub-feedback">Check out the below link for review. If you visit this quiz later, see the review section on the bottom of the page to try this one again.</p>
           </div>  
           }
-          <p className="learn-more">Learn more <a href={props.questionInfo}>At MDN</a></p>
+          <p className="learn-more">Learn more at <a href={props.questionInfo}>MDN</a></p>
           <button className="next-btn" onClick={props.toggleFeedback}>Return</button>
         </article>  
       </div>

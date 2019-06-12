@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Question from '../Question/Question';
-import Feedback from '../Feedback/Feedback';
+// import Question from '../Question/Question';
+// import Feedback from '../Feedback/Feedback';
+import QuestionContainer from '../QuestionContainer/QuestionContainer';
+import Finish from '../Finish/Finish';
 
 export default class Category extends Component {
   constructor(props) {
@@ -65,11 +67,8 @@ export default class Category extends Component {
   }
 
   componentDidMount() {
-    if (this.props.category) {
-      let categoryQuestions = this.props.questions.filter(question => {
-        return question.category === this.props.category
-      })
-    this.setState({ categoryQuestions: categoryQuestions })
+    if (!this.props.storage) {
+      this.setState({ categoryQuestions: this.props.categoryQuestions })
     } else {
       this.setState({ categoryQuestions: this.props.storage})
     }
@@ -78,48 +77,33 @@ export default class Category extends Component {
   render() {
     return(
       <div className="category-box">
-      { this.state.questionCount !== this.state.categoryQuestions.length &&
-        <article>
-          { this.props.category &&
-          <h2> {this.props.category} </h2>
-          }
-          { !this.props.category &&
-          <div>
-            <h2> Review </h2>
+        <h2> {this.props.category} </h2>
+        { this.props.category === 'Review' &&
             <p className="review">Revisit the questions you missed previously.</p>
-          </div>
-          }
-          <section className="category-stats">
-            <p className="category-completion">You've completed {this.state.questionCount}/{this.state.categoryQuestions.length} questions in this category.</p>
-            <p className="category-misses">You've missed {this.state.incorrectCount} questions.</p>
-          </section>
-          <button onClick={this.showQuestion} className="question-btn">Fire Question!</button>
-          <Question 
+        }
+        { this.state.questionCount !== this.state.categoryQuestions.length &&
+          <QuestionContainer 
+            questionCount={this.state.questionCount}
+            correctCount={this.state.correctCount}
+            incorrectCount={this.state.incorrectCount}
             displayQuestion={this.state.displayQuestion}
+            questionLength={this.state.categoryQuestions.length}
             selectedQuestion={this.state.selectedQuestion}
             evaluateQuestion={this.evaluateQuestion}
-          />
-          <Feedback 
+            showQuestion={this.showQuestion}
             showFeedback={this.state.showFeedback}
             questionInfo={this.state.selectedQuestion.link}
             toggleFeedback={this.toggleShowFeedback}
             questionFeedback={this.state.currentQuestionCorrect}
-          />  
-        </article>
-      }
-      { this.state.questionCount === this.state.categoryQuestions.length &&
-      <div className="finish-category-summary">
-       { !this.props.category &&
-          <div>
-            <h2> Review </h2>
-            <p className="review">Revisit the questions that you missed on prior visits to this site.</p>
-          </div>
-          }
-        <p className="category-finish">All questions attempted.</p>
-        <p>You answered {this.state.correctCount} of {this.state.categoryQuestions.length} correctly.</p>
-        <button onClick={this.refreshCategory} className="refresh-category">Restart Category</button>
-      </div>
-      }
+          />
+        }
+        { this.state.questionCount === this.state.categoryQuestions.length &&
+          <Finish
+            correctCount={this.state.correctCount}
+            questionLength={this.state.categoryQuestions.length}
+            refreshCategory={this.refreshCategory} 
+          />
+        }
       </div>
     )
   }
