@@ -65,12 +65,12 @@ export default class Category extends Component {
 
   render() {
     return(
-      <div className="category-box">
+      <div className='category-box'>
         <h2> {this.props.category} </h2>
-        { this.props.category === 'Review' &&
-            <p className="review">Revisit the questions you missed previously.</p>
+        {this.props.category === 'Review' &&
+            <p className='review'>Revisit the questions you missed previously.</p>
         }
-        { this.state.questionCount !== this.props.categoryQuestions.length &&
+        {this.state.questionCount !== this.props.categoryQuestions.length &&
           <QuestionContainer 
             questionCount={this.state.questionCount}
             correctCount={this.state.correctCount}
@@ -86,7 +86,7 @@ export default class Category extends Component {
             questionFeedback={this.state.currentQuestionCorrect}
           />
         }
-        { this.state.questionCount === this.props.categoryQuestions.length &&
+        {this.state.questionCount === this.props.categoryQuestions.length &&
           <Finish
             correctCount={this.state.correctCount}
             questionLength={this.props.categoryQuestions.length}

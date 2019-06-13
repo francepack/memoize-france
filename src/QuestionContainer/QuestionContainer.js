@@ -11,7 +11,7 @@ export function QuestionContainer(props) {
         questionLength={props.questionLength}
         incorrectCount={props.incorrectCount}
       />
-      <button onClick={props.showQuestion} className="question-btn">Fire Question!</button>
+      <button onClick={props.showQuestion} className='question-btn'>Fire Question!</button>
       <Question 
         displayQuestion={props.displayQuestion}
         selectedQuestion={props.selectedQuestion}
