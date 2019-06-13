@@ -1,5 +1,6 @@
 .category-box {
   @include box;
+  margin: 1rem auto;
 }
 
 .category-box h2 {
@@ -16,8 +17,8 @@
 
 .question-btn {
   @include buttons;
-  font-size: 14px;
   color: $fireQuestion;
+  font-size: 14px;
   width: 60%;
   &:hover{
     color:$activeFireQuestion;

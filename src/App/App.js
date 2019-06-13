@@ -1,96 +1,82 @@
 import React, { Component } from 'react';
 import '../Styles/index.scss';
-import Category from '../Category/Category';
+import CategoryContainer from '../CategoryContainer/CategoryContainer';
 import Header from '../Header/Header';
+import { Loading } from '../Loading/Loading';
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
       questions: [],
-      categories: [],
       storedKeys: [],
-      storedQuestions: [],
-      compileStorage: false
-    }
+      error: '',
+      isLoading: false
+    };
   }
 
-  findAllCategories() {
-    let allCategories = this.state.questions.reduce((acc, question) => {
-      if (!acc.includes(question.category)) {
-        acc.push(question.category);
-      }
-      return acc;
-    }, [])
-    this.setState({
-      categories: allCategories
-    })
+  componentDidMount = async () => {
+    this.setState({ isLoading: true });
+    try {
+      const response = await fetch('http://memoize-datasets.herokuapp.com/api/v1/MFcodeQuestions');
+      const questionData = await response.json();
+      const questions = questionData.MFcodeQuestions;
+      this.setState({ questions: questions });
+    } catch(error) {
+      this.setState({ error: error.message });
+    };
+    const storage = await this.retrieveLocalStorage();
+    this.setState({ storedKeys: storage, isLoading: false });
   }
-
-  collectMissedQuestions = (id) => {
-    if (!this.state.storedKeys.includes(id)) {
-      this.state.storedKeys.push(id)
-      this.storeLocally(this.state.storedKeys)
-    }
-  }
-
-  storeLocally(arr) {
-    localStorage.setItem('missedQuestions', JSON.stringify(arr));
-    this.retrieveLocalStorage();
-  } 
 
   retrieveLocalStorage() {
     let storage = JSON.parse(localStorage.getItem('missedQuestions'));
-    if (storage !== null) {
-      this.state.storedKeys = storage;
-      this.setState({ storedKeys: this.state.storedKeys })
-      let gatheredQuestions = this.state.storedKeys.map(id => {
-        return this.state.questions.find(question => {
-          if (question.id === id) {
-            return question;
-          }
-        })
-      })
-      this.setState({ storedQuestions: gatheredQuestions})
+    if (storage) {
+      return storage;
+    } else {
+      return [];
     }
-    this.toggleCompileStorage()
   }
 
-  toggleCompileStorage() {
-    this.setState({ compileStorage: true })
+  collectMissedQuestions = async (id) => {
+    if (!this.state.storedKeys.includes(id)) {
+      await this.setState({ storedKeys: [...this.state.storedKeys, id] });
+      this.updateLocalStore();
+    };
   }
 
-  componentDidMount() {
-    fetch('http://memoize-datasets.herokuapp.com/api/v1/MFcodeQuestions')
-      .then(response => response.json())
-      .then(questions => this.setState({ questions: questions.MFcodeQuestions }))
-      .then(() => {this.findAllCategories()})
-      .then(() => {this.retrieveLocalStorage()})
-      .catch(err => console.log('fetch error', err));
+  updateLocalStore() {
+    localStorage.setItem('missedQuestions', JSON.stringify(this.state.storedKeys));
+  } 
+
+  findStoredQuestions() {
+    if (this.state.storedKeys) {
+      return this.state.storedKeys.map(id => {
+        return this.state.questions.find(question => question.id === id);
+      });
+    } else {
+      return [];
+    }
   }
 
   render() {
+    const { isLoading } = this.state;
     return (
-      <div className="App">
+      <div className='app'>
         <Header />
-        <section className="categories-section">
-          {this.state.categories.map((category, i) => (
-            <Category 
-              key={i}
-              category={category}
+        {isLoading && <Loading />}
+        {!isLoading &&
+          <main>
+            <CategoryContainer 
               questions={this.state.questions}
               collectMissedQuestions={this.collectMissedQuestions}
             />
-          ))}
-        </section> 
-        <section className="storage-section"> 
-          {this.state.compileStorage &&
-          <Category 
-            storage={this.state.storedQuestions}
-            collectMissedQuestions={this.collectMissedQuestions}
-          />
-          }
-        </section>   
+            <CategoryContainer 
+              storage={this.findStoredQuestions()}
+              collectMissedQuestions={this.collectMissedQuestions}
+            />
+          </main>
+        }  
       </div>
     );
   }
