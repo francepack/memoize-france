@@ -11,10 +11,23 @@ export default class App extends Component {
       categories: [],
       storedKeys: [],
       storedQuestions: [],
-      compileStorage: false,
       error: '',
       isLoading: false
     };
+  }
+
+  componentDidMount = async () => {
+    this.setState({ isLoading: true })
+    try {
+      const response = await fetch('http://memoize-datasets.herokuapp.com/api/v1/MFcodeQuestions');
+      const questionData = await response.json();
+      const questions = questionData.MFcodeQuestions;
+      const categories = this.findAllCategories(questions);
+      this.setState({ questions: questions, categories: categories, isLoading: false });
+    } catch(error) {
+      this.setState({ error: error.message, isLoading: false });
+    };
+    await this.retrieveLocalStorage();
   }
 
   findAllCategories(questions) {
@@ -28,7 +41,7 @@ export default class App extends Component {
 
   collectMissedQuestions = (id) => {
     if (!this.state.storedKeys.includes(id)) {
-      this.state.storedKeys.push(id);
+      this.setState({ storedKeys: [...this.state.storedKeys, id] })
       this.storeLocally(this.state.storedKeys);
     };
   }
@@ -47,45 +60,30 @@ export default class App extends Component {
       });
       this.setState({ storedQuestions: gatheredQuestions });
     };
-    this.toggleCompileStorage();
-  }
-
-  toggleCompileStorage() {
-    this.setState({ compileStorage: true });
-  }
-
-  componentDidMount = async () => {
-    this.setState({ isLoading: true })
-    try {
-      const response = await fetch('http://memoize-datasets.herokuapp.com/api/v1/MFcodeQuestions');
-      const questionData = await response.json();
-      const questions = questionData.MFcodeQuestions;
-      const categories = this.findAllCategories(questions);
-      this.setState({ questions: questions, categories: categories, isLoading: false });
-    } catch(error) {
-      this.setState({ error: error.message, isLoading: false });
-    };
   }
 
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <Header />
-        <section>
-          <CategoryContainer 
-            categories={this.state.categories}
-            questions={this.state.questions}
-            collectMissedQuestions={this.collectMissedQuestions}
-          />
-        </section> 
-        <section> 
-          {this.state.compileStorage &&
-          <CategoryContainer 
-            storage={this.state.storedQuestions}
-            collectMissedQuestions={this.collectMissedQuestions}
-          />
+        <main>
+          { this.state.loading && 
+            <p className="loading">Now Loading...</p>
           }
-        </section>   
+          { !this.state.loading &&
+            <div>
+              <CategoryContainer 
+                categories={this.state.categories}
+                questions={this.state.questions}
+                collectMissedQuestions={this.collectMissedQuestions}
+              />
+              <CategoryContainer 
+                storage={this.state.storedQuestions}
+                collectMissedQuestions={this.collectMissedQuestions}
+              />
+            </div>
+          }
+        </main>
       </div>
     );
   }
