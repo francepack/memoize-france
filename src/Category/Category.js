@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-// import Question from '../Question/Question';
-// import Feedback from '../Feedback/Feedback';
-import QuestionContainer from '../QuestionContainer/QuestionContainer';
-import Finish from '../Finish/Finish';
+import { QuestionContainer } from '../QuestionContainer/QuestionContainer';
+import { Finish } from '../Finish/Finish';
 
 export default class Category extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categoryQuestions: [],
       selectedQuestion: {},
       questionCount: 0,
       incorrectCount: 0,
@@ -21,20 +18,20 @@ export default class Category extends Component {
 
   showQuestion = () => {
     this.setState({
-      selectedQuestion: this.state.categoryQuestions[this.state.questionCount]
-    })
-    this.toggleShowQuestion()
+      selectedQuestion: this.props.categoryQuestions[this.state.questionCount]
+    });
+    this.toggleShowQuestion();
   }
 
   toggleShowQuestion = () => {
-    this.setState({ displayQuestion: !this.state.displayQuestion })
+    this.setState({ displayQuestion: !this.state.displayQuestion });
   }
 
   toggleShowFeedback = () => {
     if (this.state.showFeedback === true) {
-      this.setState({ questionCount: this.state.questionCount +1 })
-    }
-    this.setState({ showFeedback: !this.state.showFeedback })
+      this.setState({ questionCount: this.state.questionCount +1 });
+    };
+    this.setState({ showFeedback: !this.state.showFeedback });
   }
 
   evaluateQuestion = (e) => {
@@ -49,7 +46,7 @@ export default class Category extends Component {
         currentQuestionCorrect: false
       });
       this.props.collectMissedQuestions(this.state.selectedQuestion.id);
-    }
+    };
     this.endQuestion();
   }
 
@@ -63,15 +60,7 @@ export default class Category extends Component {
       questionCount: 0,
       incorrectCount: 0,
       correctCount: 0
-    })
-  }
-
-  componentDidMount() {
-    if (!this.props.storage) {
-      this.setState({ categoryQuestions: this.props.categoryQuestions })
-    } else {
-      this.setState({ categoryQuestions: this.props.storage})
-    }
+    });
   }
 
   render() {
@@ -81,13 +70,13 @@ export default class Category extends Component {
         { this.props.category === 'Review' &&
             <p className="review">Revisit the questions you missed previously.</p>
         }
-        { this.state.questionCount !== this.state.categoryQuestions.length &&
+        { this.state.questionCount !== this.props.categoryQuestions.length &&
           <QuestionContainer 
             questionCount={this.state.questionCount}
             correctCount={this.state.correctCount}
             incorrectCount={this.state.incorrectCount}
             displayQuestion={this.state.displayQuestion}
-            questionLength={this.state.categoryQuestions.length}
+            questionLength={this.props.categoryQuestions.length}
             selectedQuestion={this.state.selectedQuestion}
             evaluateQuestion={this.evaluateQuestion}
             showQuestion={this.showQuestion}
@@ -97,14 +86,14 @@ export default class Category extends Component {
             questionFeedback={this.state.currentQuestionCorrect}
           />
         }
-        { this.state.questionCount === this.state.categoryQuestions.length &&
+        { this.state.questionCount === this.props.categoryQuestions.length &&
           <Finish
             correctCount={this.state.correctCount}
-            questionLength={this.state.categoryQuestions.length}
+            questionLength={this.props.categoryQuestions.length}
             refreshCategory={this.refreshCategory} 
           />
         }
       </div>
-    )
+    );
   }
 }

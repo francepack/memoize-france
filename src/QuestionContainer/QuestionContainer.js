@@ -1,9 +1,9 @@
 import React from 'react';
-import Question from '../Question/Question';
-import Feedback from '../Feedback/Feedback';
-import Stats from '../Stats/Stats';
+import { Question } from '../Question/Question';
+import { Feedback } from '../Feedback/Feedback';
+import { Stats } from '../Stats/Stats';
 
-function QuestionContainer(props) {
+export function QuestionContainer(props) {
   return(
     <article>
       <Stats 
@@ -24,7 +24,5 @@ function QuestionContainer(props) {
         questionFeedback={props.questionFeedback}
       />  
     </article>
-  )
+  );
 }
-
-export default QuestionContainer;

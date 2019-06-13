@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Feedback(props) {
+export function Feedback(props) {
   return(
     <div>
     { props.showFeedback &&
@@ -23,7 +23,5 @@ function Feedback(props) {
       </div>
     }
     </div>
-  )
+  );
 }
-
-export default Feedback;

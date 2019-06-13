@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Finish(props) {
+export function Finish(props) {
   return(
     <div className="finish-category-summary">
       <p className="category-finish">All questions attempted.</p>
@@ -9,5 +9,3 @@ function Finish(props) {
     </div>
   )
 }
-
-export default Finish;

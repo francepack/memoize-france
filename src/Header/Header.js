@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Directions from  '../Directions/Directions';
+import { Directions } from  '../Directions/Directions';
 
 export default class Header extends Component {
   constructor() {

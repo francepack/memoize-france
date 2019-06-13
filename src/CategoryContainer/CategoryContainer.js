@@ -33,7 +33,7 @@ function CategoryContainer(props) {
         <Category 
           category='Review'
           collectMissedQuestions={props.collectMissedQuestions}
-          storage={props.storage}   
+          categoryQuestions={props.storage}   
         />
       );
     };

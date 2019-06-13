@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Directions(props) {
+export function Directions(props) {
   return(
     <div>
       {props.displayDirections &&
@@ -14,7 +14,5 @@ function Directions(props) {
       </div>
       }
     </div>
-  )
+  );
 }
-
-export default Directions;
