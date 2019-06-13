@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../Styles/index.scss';
 import CategoryContainer from '../CategoryContainer/CategoryContainer';
 import Header from '../Header/Header';
+import { Loading } from '../Loading/Loading'
 
 export default class App extends Component {
   constructor() {
@@ -22,26 +23,16 @@ export default class App extends Component {
       const response = await fetch('http://memoize-datasets.herokuapp.com/api/v1/MFcodeQuestions');
       const questionData = await response.json();
       const questions = questionData.MFcodeQuestions;
-      const categories = this.findAllCategories(questions);
-      this.setState({ questions: questions, categories: categories, isLoading: false });
+      this.setState({ questions: questions, isLoading: false });
     } catch(error) {
       this.setState({ error: error.message, isLoading: false });
     };
     await this.retrieveLocalStorage();
   }
 
-  findAllCategories(questions) {
-    return questions.reduce((acc, question) => {
-      if (!acc.includes(question.category)) {
-        acc.push(question.category);
-      };
-      return acc;
-    }, []);
-  }
-
   collectMissedQuestions = (id) => {
     if (!this.state.storedKeys.includes(id)) {
-      this.setState({ storedKeys: [...this.state.storedKeys, id] })
+      this.setState({ storedKeys: [...this.state.storedKeys, id] });
       this.storeLocally(this.state.storedKeys);
     };
   }
@@ -64,13 +55,13 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="app">
+      <div className='app'>
         <Header />
         <main>
-          { this.state.loading && 
-            <p className="loading">Now Loading...</p>
-          }
-          { !this.state.loading &&
+          {this.state.isLoading &&
+            <Loading />
+          }  
+          {!this.state.loading &&
             <div>
               <CategoryContainer 
                 categories={this.state.categories}

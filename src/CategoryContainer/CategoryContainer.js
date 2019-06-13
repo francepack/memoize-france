@@ -16,10 +16,11 @@ function CategoryContainer(props) {
           return question.category === category;
         })
         return(
-          <Category key={category}
-                    category={category}
-                    collectMissedQuestions={props.collectMissedQuestions}
-                    categoryQuestions={categoryQuestions}
+          <Category 
+            key={category}
+            category={category}
+            collectMissedQuestions={props.collectMissedQuestions}
+            categoryQuestions={categoryQuestions}
           />
         );
       });
@@ -29,9 +30,10 @@ function CategoryContainer(props) {
   const renderReview = () => {
     if (props.storage) {
       return(
-        <Category category='Review'
-                  collectMissedQuestions={props.collectMissedQuestions}
-                  storage={props.storage}   
+        <Category 
+          category='Review'
+          collectMissedQuestions={props.collectMissedQuestions}
+          storage={props.storage}   
         />
       );
     };
@@ -39,9 +41,9 @@ function CategoryContainer(props) {
    
   return(
     <div>
-      <main className='category-container'>
+      <section className='category-container'>
         {renderCategories()}
-      </main>
+      </section>
       <section className='review-containter'>
         {renderReview()}
       </section>
