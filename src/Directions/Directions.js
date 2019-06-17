@@ -5,12 +5,13 @@ export function Directions(props) {
     <div>
       {props.displayDirections &&
         <div className='directions-overlay'>
-          <article className='directions-box'>
-            <p>There is always more to learn about coding. Pick a category to be quizzed on, and test your knowledge. Try to conquer each subject area!</p> 
-            <p>You can revist the questions that gave you trouble at the bottom of the quiz.</p>
-            <p>To update questions saved for review, or to restart a whole category, simply refresh the page.</p>
+          <div className='directions-box'>
+            <article className='directions-text'>
+              <p>There is always more to learn about coding. Review will help ensure you remember knowledge picked up along the way. Choose a category to be quizzed on, and test your knowledge! Try to finish each subject area!</p> 
+              <p>You can revist the questions that gave you trouble at the bottom of the quiz in the Review category.</p>
+            </article>
             <button className='direction-close' onClick={props.toggleDirections}>Close</button>
-          </article>
+          </div>
         </div>
       }
     </div>
