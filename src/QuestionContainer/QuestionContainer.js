@@ -6,12 +6,18 @@ import { Stats } from '../Stats/Stats';
 export function QuestionContainer(props) {
   return(
     <article>
-      <Stats 
-        questionCount={props.questionCount}
-        questionLength={props.questionLength}
-        incorrectCount={props.incorrectCount}
-      />
-      <button onClick={props.showQuestion} className='question-btn'>Fire Question!</button>
+      <div className='question-area'>
+        <div className='start-question'>
+          <button onClick={props.showQuestion} className='question-btn'>Fire Question!</button>
+        </div>
+        <div className='category-stats'>
+          <Stats 
+            questionCount={props.questionCount}
+            questionLength={props.questionLength}
+            incorrectCount={props.incorrectCount}
+          />
+        </div>
+      </div>
       <Question 
         displayQuestion={props.displayQuestion}
         selectedQuestion={props.selectedQuestion}

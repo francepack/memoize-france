@@ -1,10 +1,12 @@
 .category-box {
-  @include box;
+  align-items: center;
+  display: flex;
   margin: 1rem auto;
 }
 
 .category-box h2 {
   margin-top: 1rem;
+  width: 30%;
 }
 
 .category-completion {
@@ -21,9 +23,8 @@
   font-size: 14px;
   width: 60%;
   &:hover{
-    color:$activeFireQuestion;
+    color: $activeFireQuestion;
   }
-
 }
 
 .finish-category-summary span {
@@ -44,6 +45,6 @@
   font-size: 14px;
   width: 60%;
   &:hover{
-    color:$activeFireQuestion;
+    color: $activeFireQuestion;
   }
 }
