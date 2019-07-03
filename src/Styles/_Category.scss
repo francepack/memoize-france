@@ -1,20 +1,12 @@
 .category-box {
+  @include box;
   align-items: center;
   display: flex;
   margin: 1rem auto;
 }
 
 .category-box h2 {
-  margin-top: 1rem;
   width: 30%;
-}
-
-.category-completion {
-  margin: 1rem;
-}
-
-.category-misses {
-  margin-bottom: 0;
 }
 
 .question-btn {
@@ -32,11 +24,7 @@
 }
 
 .review {
-  margin: 0 1em;
-}
-
-.category-finish {
-  margin-bottom: 4em
+  display: flex;
 }
 
 .refresh-category {

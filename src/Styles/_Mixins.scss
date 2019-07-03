@@ -20,7 +20,7 @@
 
 //Used for boxes present on screen
 @mixin box {
-  background-color: $catbox;
+  background-color: $catboxClear;
   border: solid white 2px;
   border-radius: 10px;
   box-shadow: 2px 2px 8px 2px $shadow;
