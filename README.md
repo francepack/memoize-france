@@ -1,22 +1,18 @@
 # codeQuiz
-Learning to code can be a daunting task- there are so many subjects to practice, such as vocabularly, concepts, syntax... the list goes on! This application is designed to accept a scalable set of review questions and deliver them to a user separated by category. A user can track their progress in each category, as well as revisit any questions they may have missed, saved to local storage. 
+Test your coding knowledge! This React project was built as the final project of the first half of Turing School.
 
-This project was created to fulfill the requirements of completing the first half of Turing School. It was build with React.
+## About
+We were challenged to build a learning tool for coders. My idea was to use React to handle an expandable amount of questions and categories. We were also to store missed questions locally for review by the user.
 
 ## Screenshots
-<img width="1187" alt="screen shot 2019-02-27 at 8 45 57 am" src="https://user-images.githubusercontent.com/44355328/53502972-69f42e00-3a6c-11e9-9d04-a96815bf3c35.png">
-
-#### mobile view (at 420px)
-<img width="416" alt="screen shot 2019-02-27 at 8 46 35 am" src="https://user-images.githubusercontent.com/44355328/53503034-86906600-3a6c-11e9-99bf-4195d54bd727.png">
-
-## Learning Goals
-This was the first project I had completed by myself using React. I took what I had learned from my previous group project and applied the concepts of React to create an interactive learning application. I solidified my knowledge of components, props, and passing data down, bringing action data back up. We also used a fetch call to gather our data hosted externally, so we practiced ajax requests.
+<img width="1338" alt="Screen Shot 2019-07-03 at 6 05 40 PM" src="https://user-images.githubusercontent.com/44355328/60631671-d5a12b80-9dbd-11e9-8d17-f90ffdcd1b55.png">
 
 ## To use
-- This project was bootstrapped with Create React App.
-- Open Terminal
-- Change the current working directory to the location where you want the cloned directory to be made
-- Run git clone https://github.com/francepack/memoize-france.git - Your local clone will be created
-- Enter terminal command: cd memoize
-- Enter terminal command: npm install
-- Enter terminal command: npm start
+```cd``` into file you'd like to place this project.
+```git clone https://github.com/francepack/memoize-france.git```
+```cd``` into project
+```npm install```
+```npm start```
+
+## Learning Goals
+This is my first solo project in React, having built one previous app with a group of 3. While making this app, I solidified my knowledge of components, props, and passing data down, bringing action data back up. A fetch call is used to gather data from an external host, which was another learning goal for this project.
