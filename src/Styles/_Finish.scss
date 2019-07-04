@@ -1,0 +1,20 @@
+.finish-category-summary {
+  align-items: center;
+  display: flex;
+  width: 70%;
+}
+
+.refresh-category {
+  @include buttons;
+  color: $fireQuestion;
+  font-size: 14px;
+  margin-left: 10%;
+  width: 30%;
+  &:hover{
+    color: $activeFireQuestion;
+  }
+}
+
+.summary {
+  width: 50%;
+}

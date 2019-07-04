@@ -9,14 +9,22 @@
   justify-content: space-between;
 }
 
-.directions-box p {
-  margin: 2em 2em 0 2em;
+.directions-text {
+  background-color: $backdrop;
+  border: 3px solid #4a3058;
+  border-radius: 10px;
+  font-size: 18px;
+  left: 10%;
+  margin-top: 2em;
+  padding: 1em 3em;
+  position: relative;
+  width: 80%;
 }
 
 .direction-close {
   @include buttons;
   font-weight: 700;
-  left: 10%;
+  left: 20%;
   position: relative;
-  width: 80%;
+  width: 60%;
 }

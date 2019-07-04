@@ -67,9 +67,6 @@ export default class Category extends Component {
     return(
       <div className='category-box'>
         <h2> {this.props.category} </h2>
-        {this.props.category === 'Review' &&
-            <p className='review'>Revisit the questions you missed previously.</p>
-        }
         {this.state.questionCount !== this.props.categoryQuestions.length &&
           <QuestionContainer 
             questionCount={this.state.questionCount}

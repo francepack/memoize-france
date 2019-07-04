@@ -14,7 +14,7 @@ function CategoryContainer(props) {
       return allCategories.map(category => {
         let categoryQuestions = props.questions.filter(question => {
           return question.category === category;
-        })
+        });
         return(
           <Category 
             key={category}
@@ -40,14 +40,10 @@ function CategoryContainer(props) {
   }
    
   return(
-    <div>
-      <section className='category-container'>
-        {renderCategories()}
-      </section>
-      <section className='review-containter'>
-        {renderReview()}
-      </section>
-    </div>  
+    <section className='category-container'>
+      {renderCategories()}
+      {renderReview()}
+    </section>
   );
 }
 

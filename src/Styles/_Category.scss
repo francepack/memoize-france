@@ -1,18 +1,12 @@
 .category-box {
   @include box;
+  align-items: center;
+  display: flex;
   margin: 1rem auto;
 }
 
 .category-box h2 {
-  margin-top: 1rem;
-}
-
-.category-completion {
-  margin: 1rem;
-}
-
-.category-misses {
-  margin-bottom: 0;
+  width: 30%;
 }
 
 .question-btn {
@@ -21,9 +15,8 @@
   font-size: 14px;
   width: 60%;
   &:hover{
-    color:$activeFireQuestion;
+    color: $activeFireQuestion;
   }
-
 }
 
 .finish-category-summary span {
@@ -31,11 +24,7 @@
 }
 
 .review {
-  margin: 0 1em;
-}
-
-.category-finish {
-  margin-bottom: 4em
+  display: flex;
 }
 
 .refresh-category {
@@ -44,6 +33,6 @@
   font-size: 14px;
   width: 60%;
   &:hover{
-    color:$activeFireQuestion;
+    color: $activeFireQuestion;
   }
 }
